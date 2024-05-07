@@ -221,7 +221,7 @@
 #X text 774 1691 pulse wave - 8 octaves of the A major blues scale: A B C C# E F#;
 #X obj 993 387 phasor~;
 #X obj 1035 645 *~;
-#X obj 1026 682 dac~;
+#X obj 1006 703 dac~;
 #X obj 1095 385 phasor~;
 #X obj 1071 364 * -1;
 #X obj 1031 527 +~;
@@ -255,6 +255,12 @@
 #X msg 1028 249 69;
 #X msg 1113 247 72;
 #X msg 1197 246 77;
+#X obj 726 1305 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
+#X floatatom 726 1448 5 0 0 0 - - - 0;
+#X obj 539 1422 *~ 1;
+#X obj 922 516 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 #fcfcfc #000000 #000000 0 1;
+#X floatatom 922 659 5 0 0 0 - - - 0;
+#X obj 1009 672 *~ 1;
 #X connect 6 0 10 0;
 #X connect 8 0 9 0;
 #X connect 10 0 13 0;
@@ -279,9 +285,7 @@
 #X connect 32 0 55 0;
 #X connect 33 0 55 0;
 #X connect 34 0 49 0;
-#X connect 35 0 36 0;
-#X connect 35 0 36 1;
-#X connect 35 0 62 0;
+#X connect 35 0 183 0;
 #X connect 37 0 72 0;
 #X connect 37 0 71 0;
 #X connect 37 0 70 0;
@@ -420,9 +424,7 @@
 #X connect 140 0 143 0;
 #X connect 141 0 140 0;
 #X connect 145 0 152 0;
-#X connect 146 0 147 0;
-#X connect 146 0 147 1;
-#X connect 146 0 159 0;
+#X connect 146 0 186 0;
 #X connect 148 0 151 0;
 #X connect 149 0 148 0;
 #X connect 150 0 146 0;
@@ -457,3 +459,13 @@
 #X connect 178 0 163 0;
 #X connect 179 0 163 0;
 #X connect 180 0 163 0;
+#X connect 181 0 182 0;
+#X connect 182 0 183 1;
+#X connect 183 0 36 0;
+#X connect 183 0 36 1;
+#X connect 183 0 62 0;
+#X connect 184 0 185 0;
+#X connect 185 0 186 1;
+#X connect 186 0 147 0;
+#X connect 186 0 147 1;
+#X connect 186 0 159 0;
