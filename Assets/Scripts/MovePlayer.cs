@@ -96,12 +96,12 @@ public class MovePlayer : MonoBehaviour {
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 150);
             }
 			else if (count == 8){
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0); // stop background music
 				OSCHandler.Instance.SendMessageToClient("pd", "/unity/winner", 1); //play victory sound on 8 coins
-			}
-            else
-            {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0);
             }
+            //else
+            //{
+            //}
 
         }
         else if(other.gameObject.CompareTag("Wall"))
