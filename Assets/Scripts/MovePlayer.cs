@@ -26,6 +26,7 @@ public class MovePlayer : MonoBehaviour {
 		//************* Instantiate the OSC Handler...
 	    OSCHandler.Instance.Init ();
 		OSCHandler.Instance.SendMessageToClient ("pd", "/unity/trigger", "ready");
+		OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 0);
         OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
         //*************
 
@@ -81,19 +82,19 @@ public class MovePlayer : MonoBehaviour {
             // change the tempo of the sequence based on how many obejcts we have picked up.
             if(count < 2)
             {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 500);
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 1);
             }
             if (count < 4)
             {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 400);
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 2);
             }
             else if(count < 6)
             {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 300);
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 3);
             }
             else if (count < 8)
             {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 150);
+                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 5);
             }
 			else{ // if (count == 8){
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0); // stop background music

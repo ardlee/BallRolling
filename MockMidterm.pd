@@ -1,4 +1,4 @@
-#N canvas 1 19 1920 966 12;
+#N canvas -144 -20 1858 1037 12;
 #X text 177 277 creation arguments are OSC address;
 #X text 179 238 set message to change OSC address;
 #X text 164 48 1 Set IP Address : network address;
@@ -6,7 +6,7 @@
 #X text 164 87 3 Set OSC Addresses (routing osc data;
 #X text 155 26 Key Settings;
 #X floatatom 43 194 5 0 0 0 - - - 0;
-#N canvas 1239 0 1920 1020 oscReceive 1;
+#N canvas 106 -12 1858 1037 oscReceive 1;
 #X obj 55 184 netreceive -u -b;
 #X msg 78 143 listen 0;
 #X text 152 143 stop listening;
@@ -267,8 +267,9 @@
 #X obj 1009 672 *~ 1;
 #X msg 677 2329 0.05 100 \, 0 500 500;
 #X msg 669 1229 0.05 1 \, 0 500 500;
-#X msg 593 266 0.05 25 \, 0 1000 75;
 #X obj 530 1500 r oscplayseq;
+#X msg 593 266 0.05 25 \, 0 250 25;
+#X obj 1015 1806 r osctempo;
 #X connect 6 0 10 0;
 #X connect 8 0 9 0;
 #X connect 10 0 13 0;
@@ -277,7 +278,7 @@
 #X connect 14 0 15 1;
 #X connect 16 0 14 1;
 #X connect 17 0 14 0;
-#X connect 18 0 186 0;
+#X connect 18 0 187 0;
 #X connect 19 0 18 0;
 #X connect 22 0 49 0;
 #X connect 23 0 24 0;
@@ -476,5 +477,6 @@
 #X connect 183 0 156 0;
 #X connect 184 0 102 0;
 #X connect 185 0 45 0;
-#X connect 186 0 16 0;
-#X connect 187 0 112 0;
+#X connect 186 0 112 0;
+#X connect 187 0 16 0;
+#X connect 188 0 96 0;
