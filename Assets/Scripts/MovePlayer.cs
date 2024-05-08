@@ -1,38 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 //************** use UnityOSC namespace...
 using UnityOSC;
+using static System.Net.Mime.MediaTypeNames;
 //*************
 
 public class MovePlayer : MonoBehaviour {
 
 	public float speed;
-	public Text countText;
+	public UnityEngine.UI.Text countText;
 
-	private Rigidbody rb;
+    private Rigidbody rb;
 	private int count;
+	private bool keyPressed;
 
-	//************* Need to setup this server dictionary...
-	Dictionary<string, ServerLog> servers = new Dictionary<string, ServerLog> ();
+    //************* Need to setup this server dictionary...
+    Dictionary<string, ServerLog> servers = new Dictionary<string, ServerLog> ();
 	//*************
 
 	// Use this for initialization
 	void Start () 
 	{
-		Application.runInBackground = true; //allows unity to update when not in focus
+        UnityEngine.Application.runInBackground = true; //allows unity to update when not in focus
 
-		//************* Instantiate the OSC Handler...
-	    OSCHandler.Instance.Init ();
+        //************* Instantiate the OSC Handler...
+        OSCHandler.Instance.Init ();
 		OSCHandler.Instance.SendMessageToClient ("pd", "/unity/trigger", "ready");
 		OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 0);
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/startWaitSound", 1);
         //*************
 
         rb = GetComponent<Rigidbody> ();
 		count = 0;
 		setCountText ();
+		keyPressed = false;
 	}
 	
 
@@ -64,8 +69,17 @@ public class MovePlayer : MonoBehaviour {
 
 			}
 		}
-		//*************
-	}
+
+        if (Input.anyKey && keyPressed == false)
+        {
+			keyPressed = true;
+			OSCHandler.Instance.SendMessageToClient("pd", "/unity/startWaitSound", 0);
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/stopWaitSound", 1);
+			OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
+            //Debug.Log("A key or mouse click has been detected");
+        }
+        //*************
+    }
 		
 
 	void OnTriggerEnter(Collider other) 
