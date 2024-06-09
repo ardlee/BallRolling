@@ -24,3 +24,6 @@ NOTE: zPos should be within the range [0-1]
 	> Distortion_Amount
 	> Distortion _Dry_Wet_
 ===============================================================
+
+Horizontal resequencing is done through the 'points' variable as it updates the melody being played.
+Vertical resequencing is handled by the 'xPos' and 'zPos' variables.
