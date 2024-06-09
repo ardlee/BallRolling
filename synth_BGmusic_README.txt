@@ -3,9 +3,7 @@ synth_BGmusic.pd
 ============================ USAGE ============================
 'oscTrig' starts playback
 'points' controls which melody is played. 
-	> 0-2 plays melody 1
-	> 3-5 plays melody 2
-	> 6-8 plays melody 3
+	> updates every 9 points
 'xPos' controls the following.
 NOTE: xPos should be within the range [0-1]
 	> Osc_Gain1
