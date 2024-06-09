@@ -48,7 +48,14 @@ public class MovePlayer : MonoBehaviour {
 
         //Debug.Log(rb.position.x);
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0, moveVertical);
+        float xPos = rb.position.x;
+        float zPos = rb.position.z;
+        xPos = (xPos + 9.25f) / (18.5f);
+        zPos = (zPos + 9.25f) / (18.5f);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/xPos", xPos);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/zPos", zPos);
+
+        Vector3 movement = new Vector3 (moveHorizontal, 0, moveVertical);
 
 		rb.AddForce (movement*speed);
 
