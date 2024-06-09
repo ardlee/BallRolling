@@ -28,10 +28,10 @@ public class MovePlayer : MonoBehaviour {
 
         //************* Instantiate the OSC Handler...
         OSCHandler.Instance.Init ();
-		OSCHandler.Instance.SendMessageToClient ("pd", "/unity/trigger", "ready");
-		OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 0);
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0);
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/startWaitSound", 1);
+		OSCHandler.Instance.SendMessageToClient ("pd", "/unity/trigger", 1);
+		OSCHandler.Instance.SendMessageToClient("pd", "/unity/ballXpos", 0);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/ballZpos", 0);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/pointsCount", 1);
         //*************
 
         rb = GetComponent<Rigidbody> ();
@@ -52,8 +52,8 @@ public class MovePlayer : MonoBehaviour {
         float zPos = rb.position.z;
         xPos = (xPos + 9.25f) / (18.5f);
         zPos = (zPos + 9.25f) / (18.5f);
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/xPos", xPos);
-        OSCHandler.Instance.SendMessageToClient("pd", "/unity/zPos", zPos);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/ballXpos", xPos);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/ballZpos", zPos);
 
         Vector3 movement = new Vector3 (moveHorizontal, 0, moveVertical);
 
@@ -80,9 +80,9 @@ public class MovePlayer : MonoBehaviour {
         if (Input.anyKey && keyPressed == false)
         {
 			keyPressed = true;
-			OSCHandler.Instance.SendMessageToClient("pd", "/unity/startWaitSound", 0);
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/stopWaitSound", 1);
-			OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
+			//OSCHandler.Instance.SendMessageToClient("pd", "/unity/startWaitSound", 0);
+            //OSCHandler.Instance.SendMessageToClient("pd", "/unity/stopWaitSound", 1);
+			//OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
             //Debug.Log("A key or mouse click has been detected");
         }
         //*************
@@ -99,9 +99,10 @@ public class MovePlayer : MonoBehaviour {
 			count = count + 1;
 			setCountText ();
 
-
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/pointsCount", 1);
+            /*
             // change the tempo of the sequence based on how many obejcts we have picked up.
-            if(count < 2)
+            if (count < 2)
             {
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 1);
             }
@@ -121,15 +122,15 @@ public class MovePlayer : MonoBehaviour {
                 OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0); // stop background music
 				OSCHandler.Instance.SendMessageToClient("pd", "/unity/winner", 1); //play victory sound on 8 coins
             }
-
+        */
         }
         else if(other.gameObject.CompareTag("Wall"))
         {
             //Debug.Log("-------- HIT THE WALL ----------");
             // trigger noise burst whe hitting a wall.
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/colwall", 1);
+            //OSCHandler.Instance.SendMessageToClient("pd", "/unity/colwall", 1);
         }
-
+        
     }
 
 	void setCountText()
@@ -137,7 +138,7 @@ public class MovePlayer : MonoBehaviour {
 		countText.text = "Count: " + count.ToString ();
 
 		//************* Send the message to the client...
-		OSCHandler.Instance.SendMessageToClient ("pd", "/unity/trigger", count);
+		OSCHandler.Instance.SendMessageToClient ("pd", "/unity/pointsCount", count);
 		//*************
 	}
 		
