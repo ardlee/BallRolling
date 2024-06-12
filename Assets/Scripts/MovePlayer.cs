@@ -100,6 +100,7 @@ public class MovePlayer : MonoBehaviour {
 			setCountText ();
 
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/pointsCount", 1);
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/collect1", 1);
             /*
             // change the tempo of the sequence based on how many obejcts we have picked up.
             if (count < 2)
@@ -123,6 +124,27 @@ public class MovePlayer : MonoBehaviour {
 				OSCHandler.Instance.SendMessageToClient("pd", "/unity/winner", 1); //play victory sound on 8 coins
             }
         */
+        }
+        if (other.gameObject.CompareTag("pickup2"))
+        {
+            other.gameObject.SetActive(false);
+            count = count + 1;
+            setCountText();
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/collect2", 1);
+        }
+        if (other.gameObject.CompareTag("pickup3"))
+        {
+            other.gameObject.SetActive(false);
+            count = count + 1;
+            setCountText();
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/collect3", 1);
+        }
+        if (other.gameObject.CompareTag("pickup4"))
+        {
+            other.gameObject.SetActive(false);
+            count = count + 1;
+            setCountText();
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/collect4", 1);
         }
         else if(other.gameObject.CompareTag("Wall"))
         {
