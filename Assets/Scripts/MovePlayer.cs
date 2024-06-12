@@ -126,9 +126,9 @@ public class MovePlayer : MonoBehaviour {
         }
         else if(other.gameObject.CompareTag("Wall"))
         {
-            //Debug.Log("-------- HIT THE WALL ----------");
-            // trigger noise burst whe hitting a wall.
-            //OSCHandler.Instance.SendMessageToClient("pd", "/unity/colwall", 1);
+            Debug.Log("-------- HIT THE WALL ----------");
+             //trigger noise burst whe hitting a wall.
+            OSCHandler.Instance.SendMessageToClient("pd", "/unity/colwall", 1);
         }
         
     }
