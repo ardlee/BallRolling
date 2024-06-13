@@ -46,7 +46,12 @@ public class MovePlayer : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
+        rb = GetComponent<Rigidbody> ();
         //Debug.Log(rb.position.x);
+        float xVelo = Math.Abs(rb.velocity.x);
+        float zVelo = Math.Abs(rb.velocity.z);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/ballXvelo", xVelo);
+        OSCHandler.Instance.SendMessageToClient("pd", "/unity/ballZvelo", zVelo);
 
         float xPos = rb.position.x;
         float zPos = rb.position.z;
@@ -76,16 +81,6 @@ public class MovePlayer : MonoBehaviour {
 
 			}
 		}
-
-        if (Input.anyKey && keyPressed == false)
-        {
-			keyPressed = true;
-			//OSCHandler.Instance.SendMessageToClient("pd", "/unity/startWaitSound", 0);
-            //OSCHandler.Instance.SendMessageToClient("pd", "/unity/stopWaitSound", 1);
-			//OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 1);
-            //Debug.Log("A key or mouse click has been detected");
-        }
-        //*************
     }
 		
 
@@ -99,31 +94,7 @@ public class MovePlayer : MonoBehaviour {
 			count = count + 1;
 			setCountText ();
 
-            OSCHandler.Instance.SendMessageToClient("pd", "/unity/pointsCount", 1);
             OSCHandler.Instance.SendMessageToClient("pd", "/unity/collect1", 1);
-            /*
-            // change the tempo of the sequence based on how many obejcts we have picked up.
-            if (count < 2)
-            {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 1);
-            }
-            if (count < 4)
-            {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 2);
-            }
-            else if(count < 6)
-            {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 3);
-            }
-            else if (count < 8)
-            {
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/tempo", 5);
-            }
-			else{ // if (count == 8){
-                OSCHandler.Instance.SendMessageToClient("pd", "/unity/playseq", 0); // stop background music
-				OSCHandler.Instance.SendMessageToClient("pd", "/unity/winner", 1); //play victory sound on 8 coins
-            }
-        */
         }
         if (other.gameObject.CompareTag("pickup2"))
         {
