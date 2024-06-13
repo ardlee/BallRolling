@@ -1,4 +1,4 @@
-#N canvas -7 0 927 1028 12;
+#N canvas -350 -8 1858 1037 12;
 #X text 177 277 creation arguments are OSC address;
 #X text 179 238 set message to change OSC address;
 #X text 164 48 1 Set IP Address : network address;
@@ -6,7 +6,7 @@
 #X text 164 87 3 Set OSC Addresses (routing osc data;
 #X text 155 26 Key Settings;
 #X floatatom 43 194 5 0 0 0 - - - 0;
-#N canvas -7 0 927 1028 oscReceive 1;
+#N canvas -107 -8 1858 1037 oscReceive 1;
 #X obj 55 184 netreceive -u -b;
 #X msg 78 143 listen 0;
 #X text 152 143 stop listening;
@@ -121,7 +121,7 @@
 #X restore 47 118 pd oscSend;
 #X obj 44 313 s oscOut;
 #X text 285 140 receives from oscTrig to start playing;
-#N canvas 156 156 1858 1037 sounds 1;
+#N canvas -226 -24 1858 1037 sounds 1;
 #X obj 28 -146 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X msg 28 -121 \; pd dsp \$1;
 #N canvas 1876 -28 1858 1037 oscillators 0;
@@ -1518,6 +1518,11 @@
 #X msg 2320 672 28;
 #X msg 1822 672 26;
 #X msg 1855 672 28;
+#X text 594 378 SYNTHESIZER;
+#X text 709 -111 MELODIES;
+#X text 1545 -108 MELODY METRO;
+#X text 249 746 MANUAL ZPOS;
+#X text 232 988 MANUAL XPOS;
 #X connect 0 0 1 0;
 #X connect 2 0 8 0;
 #X connect 8 0 40 0;
